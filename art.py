@@ -1,10 +1,10 @@
 import binascii
 import math
 import turtle
-from Tkinter import *
+from tkinter import *
 from PIL import Image
 
-from config import FONT_SIZE, FILE_NAME, IMAGE_NAME, DATA_OFFSET
+from config import FONT_NAME, FONT_SIZE, FILE_NAME, IMAGE_NAME, DATA_OFFSET, OUTPUT_FPATH
 
 # basic setup
 img = Image.open(IMAGE_NAME)
@@ -32,6 +32,7 @@ class HexArtDrawer(object):
         return self._font[1]
 
     def configure(self):
+        assert(not self._configured)
         self.determine_char_width()
         self.determine_charspace_width()
 
@@ -130,9 +131,12 @@ class HexArtDrawer(object):
                 print("i={} : writing the next hex value with the corresponding segment color...")
 
                 # write the next hex value with the corresponding average segment color
-                self._tess.write(binascii.hexlify(block[i]), font=self._font)
+                self._tess.write(
+                    binascii.hexlify(bytes(str(block[i]), 'ascii')),
+                    font=self._font
+                )
 
-                print("i={} : completed writing the next hex value with the corresponding segment color.")
+                print("i={} : completed writing the next hex value with the corresponding segment color.".format(i))
 
             print("Completed writing all the hex values with color!")
 
@@ -154,8 +158,8 @@ def main():
     drawer = HexArtDrawer(
         image=Image.open(IMAGE_NAME),
         input_hexfile=FILE_NAME,
-        output_fname="fine.ps",
-        font_name="Courier",
+        output_fname=OUTPUT_FPATH,
+        font_name=FONT_NAME,
         font_size=FONT_SIZE
     )
     drawer.draw()
