@@ -1,13 +1,18 @@
 # Hex
-Reproducing images using hex values found from a desired file 
 
-# What is it?
-Hex takes an `PNG` image and a corresponding file to recreate the image by replacing all pixels with colored hex values. I wanted to put up some art for my place and thought it would be fun to blend it with a programmers prospective. The output of the file is a `postscript` file.
+> Reproducing images using hex values found from a desired file
+
+Hex is a Python program that takes an image of **.PNG** format, and a corresponding file, to recreate the image by replacing all pixels with colored hex values. The original author, [Steven Kang](https://github.com/sacert), wanted to put up some art for his place and thought it would be fun to blend it with a programmers prospective.
+
+The output of the file is a PostScript (**.ps**) file.
 
 # Input
+
 `FILE` = Anything - the program just takes the hex values from it
 
-`IMAGE` = Tried with PNG files. JPEG files should work but the algorithm takes into factor the alpha channel so all corresponding lines of code will need to be commented out
+`IMAGE` = Image file, preferably in **.PNG** format. 
+
+_DISCLAIMER: The program has been tested with **PNG** files as `IMAGE`. **JPEG** files has not been tested. While **JPEG** files should theoretically work, the algorithm does take into account the alpha channel. If the user wishes to accept **JPEG** files as the input for `IMAGE`, corresponding lines of code regarding the alpha channel shall be commented out._
 
 # Examples
 
@@ -31,21 +36,21 @@ For **Tardis**
 Here it is shown how each "pixel" of the image is simply a colored hex value.
 
 
-# Getting Start
-Within the python file are 4 globals, set these accordingly:
+# Getting Started
 
-```
-FONT_SIZE = 4               # Pixel size
-FILE_NAME = "input.mp3"     # Name of file to get hex values from
-IMAGE_NAME = "input.png"    # Name of image file
-DATA_OFFSET = 32            # Where to start reading data from (mp3 music data starts at 32 by)
-```
+Within the [`config.py`](./config.py) are input parameters that the user has to specify.
 
-# Dependencies
-- Turtle
-- Tkinter
-- PIL
+* `FONT_NAME`: The name of the font for writing the ASCII hex text.
+* `FONT_SIZE`: The size of the font for drawing on the canvas.
+* `FILE_NAME`: The name of the input file where the hex values will be obtained from
+* `IMAGE_NAME`: The name of the image file in **.png** format.
+* `OUTPUT_FPATH`: The file path of the output in **.ps** format.
+* `DATA_OFFSET`: Where to start reading data from (i.e. mp3 data starts at byte position 32)
 
+# Running the Program
+
+    (Hex) $ python art.py
 
 # Licensing 
-MIT
+
+See [**LICENSE**](./LICENSE) for the complete MIT License.

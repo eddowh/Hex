@@ -128,11 +128,11 @@ class HexArtDrawer(object):
                 else:
                    self._tess.color(img_r/255.0, img_g/255.0, img_b/255.0)
 
-                print("i={} : writing the next hex value with the corresponding segment color...")
+                print("i={} : writing the next hex value with the corresponding segment color...".format(i))
 
                 # write the next hex value with the corresponding average segment color
                 self._tess.write(
-                    binascii.hexlify(bytes(str(block[i]), 'ascii')),
+                    str(binascii.hexlify(block[i:i+1]))[2:-1],
                     font=self._font
                 )
 
